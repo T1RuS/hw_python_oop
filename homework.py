@@ -105,9 +105,9 @@ class SportsWalking(Training):
         """Получить количество затраченных калорий для бега."""
         coeff_calorie_1: float = 0.035
         coeff_calorie_2: float = 0.029
-        return (coeff_calorie_1 * self.weight +
-                (self.get_mean_speed() ** 2
-                 // self.height) * coeff_calorie_2 *
+        return (coeff_calorie_1 * self.weight
+                + (self.get_mean_speed() ** 2
+                   // self.height) * coeff_calorie_2 *
                 self.weight) * self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
@@ -138,7 +138,7 @@ class Swimming(Training):
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения в бассейне."""
         return self.length_pool * self.count_pool / \
-               self.M_IN_KM / self.duration
+            self.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
