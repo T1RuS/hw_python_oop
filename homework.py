@@ -1,5 +1,5 @@
-# почему в строке 81 нужен косой слеш при
-# переносе, а в строке 110 нет?
+# Можете написать как правильно преносить
+# строки с двоичными операторами или оставить сссылку?
 
 # f"{numObj:.{digits}f}" не особо понял
 # как работает данная конструкция для обрезаний чисел.
@@ -107,8 +107,8 @@ class SportsWalking(Training):
         coeff_calorie_2: float = 0.029
         return (coeff_calorie_1 * self.weight
                 + (self.get_mean_speed() ** 2
-                   // self.height) * coeff_calorie_2 *
-                self.weight) * self.duration * self.HOURS_PER_MINUTE
+                   // self.height) * coeff_calorie_2
+                * self.weight) * self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
