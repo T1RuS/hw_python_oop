@@ -1,3 +1,10 @@
+# почему в строке 77 нужен косой слеш при
+# переносе, а в строке 76 нет?
+
+# f"{numObj:.{digits}f}" не особо понял
+# как работает данная конструкция для обрезаний чисел.
+# Можете рассказать?
+
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
@@ -12,9 +19,7 @@ class InfoMessage:
         self.speed = speed
         self.calories = calories
 
-    def get_message(self) -> str:  # f"{numObj:.{digits}f}" не особо понял
-        # как работает данная конструкция для обрезаний чисел.
-        # Можете рассказать?
+    def get_message(self) -> str:
         return f"Тип тренировки: {self.training_type}; " \
                f"Длительность: {self.duration:.{3}f} ч.; " \
                f"Дистанция: {self.distance:.{3}f} км; " \
@@ -71,8 +76,7 @@ class Running(Training):
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий для бега."""
         coeff_calorie_1 = 18
-        coeff_calorie_2 = 20  # почему в строке 77 нужен косой слеш при
-                              # переносе, а в строке 76 нет?
+        coeff_calorie_2 = 20
         return (coeff_calorie_1 * self.get_mean_speed() -
                 coeff_calorie_2) * \
                self.weight / self.M_IN_KM * self.duration * \
@@ -103,9 +107,9 @@ class SportsWalking(Training):
         coeff_calorie_1: float = 0.035
         coeff_calorie_2: float = 0.029
         return (coeff_calorie_1 * self.weight +
-                (self.get_mean_speed() ** 2 //
-                 self.height) * coeff_calorie_2 * self.weight) * \
-                 self.duration * self.HOURS_PER_MINUTE
+                (self.get_mean_speed() ** 2
+                 // self.height) * coeff_calorie_2 * self.weight) * \
+               self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
