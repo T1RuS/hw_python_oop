@@ -78,9 +78,7 @@ class Running(Training):
         coeff_calorie_1 = 18
         coeff_calorie_2 = 20
         return (coeff_calorie_1 * self.get_mean_speed() -
-                coeff_calorie_2) * \
-               self.weight / self.M_IN_KM * self.duration * \
-               self.HOURS_PER_MINUTE
+                coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
@@ -108,8 +106,8 @@ class SportsWalking(Training):
         coeff_calorie_2: float = 0.029
         return (coeff_calorie_1 * self.weight +
                 (self.get_mean_speed() ** 2
-                 // self.height) * coeff_calorie_2 * self.weight) * \
-               self.duration * self.HOURS_PER_MINUTE
+                 // self.height) * coeff_calorie_2 *
+                self.weight) * self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
