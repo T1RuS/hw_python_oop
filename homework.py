@@ -1,5 +1,5 @@
-# почему в строке 77 нужен косой слеш при
-# переносе, а в строке 76 нет?
+# почему в строке 81 нужен косой слеш при
+# переносе, а в строке 110 нет?
 
 # f"{numObj:.{digits}f}" не особо понял
 # как работает данная конструкция для обрезаний чисел.
@@ -77,8 +77,9 @@ class Running(Training):
         """Получить количество затраченных калорий для бега."""
         coeff_calorie_1 = 18
         coeff_calorie_2 = 20
-        return (coeff_calorie_1 * self.get_mean_speed() -
-                coeff_calorie_2) * self.weight / self.M_IN_KM * self.duration * self.HOURS_PER_MINUTE
+        return (coeff_calorie_1 * self.get_mean_speed()
+                - coeff_calorie_2) * self.weight / self.M_IN_KM *\
+            self.duration * self.HOURS_PER_MINUTE
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
