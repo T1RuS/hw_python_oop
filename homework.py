@@ -1,3 +1,6 @@
+from typing import Dict
+
+
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
@@ -22,7 +25,7 @@ class InfoMessage:
 
 class Training:
     """Базовый класс тренировки."""
-    NAME_OF_TRAINING = 'тренировка'
+    NAME_OF_TRAINING: str = 'Training'
     LEN_STEP: float = 0.65
     M_IN_KM: float = 1000
     HOURS_PER_MINUTE: float = 60
@@ -50,17 +53,17 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        train = InfoMessage(self.NAME_OF_TRAINING,
+        training = InfoMessage(self.NAME_OF_TRAINING,
                             self.duration,
                             self.get_distance(),
                             self.get_mean_speed(),
                             self.get_spent_calories())
-        return train
+        return training
 
 
 class Running(Training):
     """Тренировка: бег."""
-    NAME_OF_TRAINING = 'Running'
+    NAME_OF_TRAINING: str = 'Running'
 
     def get_distance(self) -> float:
         """Получить дистанцию в км для бега."""
@@ -80,7 +83,7 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    NAME_OF_TRAINING = 'SportsWalking'
+    NAME_OF_TRAINING: str = 'SportsWalking'
 
     def __init__(self,
                  action: int,
@@ -110,7 +113,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
-    NAME_OF_TRAINING = 'Swimming'
+    NAME_OF_TRAINING: str = 'Swimming'
 
     def __init__(self,
                  action: int,
@@ -143,7 +146,7 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    type_of_training = {
+    type_of_training: Dict = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
