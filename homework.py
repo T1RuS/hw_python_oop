@@ -67,7 +67,7 @@ class Running(Training):
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий для бега."""
         coeff_calorie_1 = 18
-        coeff_calorie_2 = 20  # почему в строке 68 нужен косой слеш при переносе, а в строке 95 нет?
+        coeff_calorie_2 = 20  # почему в строке 71 нужен косой слеш при переносе, а в строке 98 нет?
         return (coeff_calorie_1 * self.get_mean_speed() - coeff_calorie_2) * \
                self.weight / self.M_IN_KM * self.duration * self.HOURS_PER_MINUTE
 
