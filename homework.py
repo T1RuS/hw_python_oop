@@ -36,8 +36,8 @@ class Training:
     weight: float
 
     LEN_STEP: ClassVar[float] = 0.65
-    M_IN_KM:  ClassVar[float] = 1000
-    HOURS_PER_MINUTE:  ClassVar[float] = 60
+    M_IN_KM: ClassVar[float] = 1000
+    HOURS_PER_MINUTE: ClassVar[float] = 60
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -65,8 +65,8 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
-    COEFF_CALORIE_1:  ClassVar[float] = 18
-    COEFF_CALORIE_2:  ClassVar[float] = 20
+    COEFF_CALORIE_1: ClassVar[float] = 18
+    COEFF_CALORIE_2: ClassVar[float] = 20
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий для бега."""
@@ -81,9 +81,9 @@ class SportsWalking(Training):
 
     height: float
 
-    IN_SQUARE:  ClassVar[float] = 2
-    COEFF_CALORIE_1:  ClassVar[float] = 0.035
-    COEFF_CALORIE_2:  ClassVar[float] = 0.029
+    IN_SQUARE: ClassVar[float] = 2
+    COEFF_CALORIE_1: ClassVar[float] = 0.035
+    COEFF_CALORIE_2: ClassVar[float] = 0.029
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий для бега."""
@@ -100,9 +100,9 @@ class Swimming(Training):
     length_pool: float
     count_pool: int
 
-    LEN_STEP:  ClassVar[float] = 1.38
-    COEF_ONE_FOR_CAL:  ClassVar[float] = 1.1
-    COEF_TWO_FOR_CAL:  ClassVar[float] = 2
+    LEN_STEP: ClassVar[float] = 1.38
+    COEF_ONE_FOR_CAL: ClassVar[float] = 1.1
+    COEF_TWO_FOR_CAL: ClassVar[float] = 2
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения в бассейне."""
