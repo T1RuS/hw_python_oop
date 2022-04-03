@@ -1,5 +1,5 @@
 from typing import Dict, List, Callable, ClassVar
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 
 SWM: str = 'SWM'
@@ -17,14 +17,15 @@ class InfoMessage:
     speed: float
     calories: float
 
+    TEMPLATE_MESSAGE: ClassVar[str] = ("Тип тренировки: {training_type}; "
+                                       "Длительность: {duration:.3f} ч.; "
+                                       "Дистанция: {distance:.3f} км; "
+                                       "Ср. скорость: {speed:.3f} км/ч; "
+                                       "Потрачено ккал: {calories:.3f}.")
+
     def get_message(self) -> str:
         """Создаст сообщение для выода."""
-        message: str = f"Тип тренировки: {self.training_type}; " \
-                       f"Длительность: {self.duration:.3f} ч.; " \
-                       f"Дистанция: {self.distance:.3f} км; " \
-                       f"Ср. скорость: {self.speed:.3f} км/ч; " \
-                       f"Потрачено ккал: {self.calories:.3f}."
-        return message
+        return self.TEMPLATE_MESSAGE.format(**asdict(self))
 
 
 @dataclass
@@ -49,7 +50,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError('Функция не выполнилась тк она пустая.')
+        raise NotImplementedError('Исключение в %s.'
+                                  % self.__class__.__name__)
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -117,7 +119,6 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-
     type_of_training: Dict[str, Callable[[float], Training]] = {
         SWM: Swimming,
         RUN: Running,
@@ -127,12 +128,12 @@ def read_package(workout_type: str, data: list) -> Training:
     if workout_type in type_of_training:
         return type_of_training[workout_type](*data)
 
-    raise KeyError(f'В словаре нет ключа: {workout_type}')
+    raise KeyError(f'Поданы неправильные входные данные. '
+                   f'Правильные данные: {list(type_of_training.keys())}')
 
 
 def main(training: Training) -> None:
     """Главная функция."""
-
     info = training.show_training_info()
     print(info.get_message())
 
