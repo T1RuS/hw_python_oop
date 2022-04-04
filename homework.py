@@ -50,8 +50,7 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError('Исключение в %s.'
-                                  % self.__class__.__name__)
+        raise NotImplementedError(f'Исключение в {self.__class__.__name__}.')
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -128,7 +127,7 @@ def read_package(workout_type: str, data: list) -> Training:
     if workout_type in type_of_training:
         return type_of_training[workout_type](*data)
 
-    raise KeyError(f'Поданы неправильные входные данные. '
+    raise KeyError(f'Поданы неправильные входные данные. {workout_type}'
                    f'Правильные данные: {list(type_of_training.keys())}')
 
 
